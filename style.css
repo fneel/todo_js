@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+h1{
+    font-size: 48px;
+    font-weight: 600px;
+}
+h2{
+    font-size: 40px;
+    font-weight: 400px;
+}
+.todo-item{
+    border: 1px solid black;
+    margin: 0.2rem
+}

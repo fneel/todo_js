@@ -1,0 +1,36 @@
+Du ska i denna uppgift bygga en todoapp. Appen ska byggas med HTML & CSS, tillsammans med JavaScript för att hantera de dynamiska värdena. Följande funktionalitet måste implementeras:
+
+* Skapa todo (titel och beskrivning)
+* Lista todos (färdiga- och ofärdiga)
+* Avklara todo (check av)
+* Ta bort todo
+
+
+En todo ska minst bestå av:
+
+* Titel
+* Beskrivning
+* Avklarad (boolean)
+* Skapad datum
+* Avklarad datum
+
+
+Om du går för VG och använder dummyjson API:et så använder du deras todo objekt-struktur.
+
+
+
+Bedömning på denna uppgift: IG, G och VG.
+
+Om kraven för G eller VG inte uppnås så bedöms uppgiften med IG.
+
+
+Krav för G
+
+
+Implementera och följa allt som står i beskrivningen.
+Git måste användas för versionshantering.
+
+Krav för VG
+
+
+Använd (https://dummyjson.com/docs/todos) API:et för all funktionalitet
