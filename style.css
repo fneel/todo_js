@@ -3,6 +3,9 @@
   font-family: 'Poppins', sans-serif;
   margin: 0;
 }
+main{
+    display: flex;
+}
 h1{
     font-size: 48px;
     font-weight: 600px;
