@@ -1,20 +1,32 @@
 * {
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
 }
-main{
-    display: flex;
+body {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
-h1{
-    font-size: 48px;
-    font-weight: 600px;
+main {
+  display: flex;
+  justify-content: space-around;
 }
-h2{
-    font-size: 40px;
-    font-weight: 400px;
+h1 {
+  font-size: 48px;
+  font-weight: 600px;
+  padding: 4rem;
 }
-.todo-item{
-    border: 1px solid black;
-    margin: 0.2rem
+h2 {
+  font-size: 40px;
+  font-weight: 400px;
+  padding: 2rem;
+}
+.col-title {
+  width: 50%;
+  margin-top: 2rem;
+}
+.todo-item {
+  border: 1px solid black;
+  margin: 0.2rem;
 }

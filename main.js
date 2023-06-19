@@ -1,3 +1,9 @@
+const createTodo = document.getElementById("create-todo")
+const todoListItem = document.getElementById("todo-list")
+const doneListItem = document.getElementById("done-list")
+let todos = [];
+
+
 //från dummyjson
 fetch("https://dummyjson.com/todos/add", {
   method: "POST",
@@ -10,3 +16,9 @@ fetch("https://dummyjson.com/todos/add", {
 })
   .then((res) => res.json())
   .then(console.log);
+
+  createTodo.addEventListener("submit"), (event) => {
+    event.preventDefault();
+
+    let description = createTodo[0];
+  }
