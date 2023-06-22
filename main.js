@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const createForm = document.getElementById("create-form");
-  const todoListItem = document.getElementById("todo-list");
-  const doneListItem = document.getElementById("done-list");
+  var createForm = document.getElementById("create-form");
+  var todoListItem = document.getElementById("todo-list");
+  var doneListItem = document.getElementById("done-list");
+  var title = document.getElementById("title");
+  var description = document.getElementById("description");
+  var createdDate = document.getElementById("created-date");
   //let todoItems = [];
 
   //hämta tidigare sparade todos 
   var savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
   savedTodos.forEach(function(todo) {
-    var todoItem = createTodoItem(todo.title, todo.descriptionm, todo.createdDate, todo.completedDate);
+    var todoItem = createTodoItem(todo.title, todo.description, todo.createdDate, todo.completedDate);
     if (todo.completed) {
       doneListItem.appendChild(todoItem);
     } else {
@@ -19,20 +22,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // lyssnar efter submit, sen förhinra att sidan refreshar
-createForm.addEventListener("submit"), function (event) {
+createForm.addEventListener('submit', function(event) {
    event.preventDefault();
 
 
    var todoInput = createForm.querySelector('input');
    var title = todoInput.value;
-   var description = todoInput.value;
+   var description = description.value;
    var createdDate = new Date().toLocaleString();
 
    if (title.trim() === '') {
     alert('A title would be nice');
     return;
    }
-
+  });
    
    //skapa <li> -element för nya todos
    var todoItem = createTodoItem(title, description, createdDate);
@@ -51,7 +54,7 @@ createForm.addEventListener("submit"), function (event) {
    };
    savedTodos.push(newTodo);
    localStorage.setItem('todos', JSON.stringify(savedTodos));
-  };
+  
 
    //skapa ny todo-item
    function createTodoItem(title, description, createdDate, completedDate) {
@@ -81,4 +84,5 @@ createForm.addEventListener("submit"), function (event) {
     }
   }
 
-   };
+   }
+  });

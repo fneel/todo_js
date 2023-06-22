@@ -5,7 +5,8 @@
 
 }
 body {
-
+  display: flex;
+  flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -31,4 +32,16 @@ h2 {
 .todo-item {
   border: 1px solid black;
   margin: 0.2rem;
+}
+#create-form {
+  display: flex;
+  flex-direction: column;
+  
+} 
+#title {
+  margin-bottom: 20px;
+  height: 30px;
+}
+#description {
+  height: 80px;
 }
