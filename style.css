@@ -29,7 +29,7 @@ h2 {
   width: 50%;
   margin-top: 2rem;
 }
-.todo-item {
+.todo-items {
   border: 1px solid black;
   margin: 0.2rem;
 }
@@ -44,4 +44,7 @@ h2 {
 }
 #description {
   height: 80px;
+}
+ul {
+  list-style: none;
 }
