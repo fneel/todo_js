@@ -29,7 +29,7 @@ h2 {
   width: 50%;
   margin-top: 2rem;
 }
-.todo-items {
+.todo-item {
   border: 1px solid black;
   margin: 0.2rem;
 }
@@ -38,11 +38,11 @@ h2 {
   flex-direction: column;
   
 } 
-#title {
+#input-title {
   margin-bottom: 20px;
   height: 30px;
 }
-#description {
+#input-description {
   height: 80px;
 }
 ul {

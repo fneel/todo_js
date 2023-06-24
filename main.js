@@ -1,35 +1,33 @@
+    // const title = document.getElementById("title");
+  // const description = document.getElementById("description");
+  // const createdDate = document.getElementById("created-date");
+
+
+  
   const createForm = document.getElementById("create-form");
   const todoListItem = document.getElementById("todo-list");
   const doneListItem = document.getElementById("done-list");
-  const title = document.getElementById("title");
-  const description = document.getElementById("description");
-  // const createdDate = document.getElementById("created-date");
-
   let todos = [];
   let idCounter = 31;
 
-// document.addEventListener("DOMContentLoaded", function () {
-// init();
+document.addEventListener("DOMContentLoaded", function () {
 
+
+//skapar formuläret för todo
 createForm.addEventListener("submit", (event) => {
   event.preventDefault();
-
-  let description = createForm.children[0];
+  
+  let title = document.getElementById("input-title");
+  let description = document.getElementById("input-description");
 
   createTodo(title.value, description.value, todos, () => {
     renderTodos(todos);
   });
   description.value = "";
+  title.value = "";
 });
 
-// function init() {
-//   fetch("https://dummyjson.com/todos")
-//     .then((res) => res.json())
-//     .then((values) => {
-//       todos = values.todos;
-//       renderTodos(todos);
-//     });
-// }
+
 
 function renderTodos(todos) {
   todoListItem.innerHTML = "";
@@ -37,7 +35,7 @@ function renderTodos(todos) {
   for (let todo of todos) {
     let element = createTodoElement(todo);
 
-    if (todo.completed) {
+    if (todo.done) {
       doneListItem.append(element);
     } else {
       todoListItem.append(element);
@@ -45,53 +43,25 @@ function renderTodos(todos) {
   }
 }
 
-  //hämta tidigare sparade todos
-  // let savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
-  // savedTodos.forEach(function (todo) {
-  //   let todoItem = createTodoItem(
-  //     todo.title,
-  //     todo.description,
-  //     todo.createdDate,
-  //     todo.completedDate
-  //   );
-  //   if (todo.completed) {
-  //     doneListItem.appendChild(todoItem);
-  //   } else {
-  //     todoListItem.appendChild(todoItem);
-  //   }
-  // });
-
-  // lyssnar efter submit, sen förhinra att sidan refreshar
-  // createForm.addEventListener("submit", function (event) {
-  //   event.preventDefault();
-
-  //   var todoInput = createForm.querySelector("input");
-  //   var title = todoInput.value;
-  //   var description = description.value;
-  //   //  var createdDate = new Date();
-  //   var createdDate = new Date();
-  //   if (title.trim() === "") {
-  //     alert("A title would be nice");
-  //     return;
-  //   }
-  // });
 
 function createTodoElement(todo) {
   let li = document.createElement("li");
   li.classList.add("todo-item");
   let article = document.createElement("article");
-
+  let title = document.createElement("h3");
   let description = document.createElement("p");
-  let completed = document.createElement("input");
+
+  let done = document.createElement("input");
   let removeBtn = document.createElement("button");
 
-  completed.type = "checkbox";
+  done.type = "checkbox";
+  title.innerText = todo.header;
   description.innerText = todo.todo;
-  completed.checked = todo.completed;
+  done.checked = todo.done;
   removeBtn.innerText = "Remove";
 
-  completed.addEventListener("change", (event) => {
-    todo.completed = event.target.checked;
+  done.addEventListener("change", (event) => {
+    todo.done = event.target.checked;
     renderTodos(todos);
   });
 
@@ -101,17 +71,18 @@ function createTodoElement(todo) {
     });
   });
 
-  article.append(description, completed, removeBtn);
+  article.append(title, description, done, removeBtn);
 
   li.append(article);
   return li;
 }
 
-function createTodo(description, todos, after) {
+function createTodo(title, description, todos, after) {
   fetch("https://dummyjson.com/todos/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      header: title,
       todo: description,
       completed: false,
       userId: 1, // Hardcode this property since it is unused.
@@ -138,6 +109,39 @@ function removeTodo(todo, todos, after) {
         }}
         after();
 })};
+});
+
+  //hämta tidigare sparade todos
+  // let savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+  // savedTodos.forEach(function (todo) {
+  //   let todoItem = createTodoItem(
+  //     todo.title,
+  //     todo.description,
+  //     todo.createdDate,
+  //     todo.doneDate
+  //   );
+  //   if (todo.done) {
+  //     doneListItem.appendChild(todoItem);
+  //   } else {
+  //     todoListItem.appendChild(todoItem);
+  //   }
+  // });
+
+  // lyssnar efter submit, sen förhinra att sidan refreshar
+  // createForm.addEventListener("submit", function (event) {
+  //   event.preventDefault();
+
+  //   var todoInput = createForm.querySelector("input");
+  //   var title = todoInput.value;
+  //   var description = description.value;
+  //   //  var createdDate = new Date();
+  //   var createdDate = new Date();
+  //   if (title.trim() === "") {
+  //     alert("A title would be nice");
+  //     return;
+  //   }
+  // });
+
 //   //skapa <li> -element för nya todos
 //   var todoItem = createTodoItem(title, description, createdDate);
 //   todoListItem.appendChild(todoItem);
@@ -149,14 +153,14 @@ function removeTodo(todo, todos, after) {
 //     title: title,
 //     description: description,
 //     createdDate: createdDate,
-//     completedDate: null,
-//     completed: false,
+//     doneDate: null,
+//     done: false,
 //   };
 //   savedTodos.push(newTodo);
 //   localStorage.setItem("todos", JSON.stringify(savedTodos));
 
 //   //skapa ny todo-item
-//   function createTodoItem(title, description, createdDate, completedDate) {
+//   function createTodoItem(title, description, createdDate, doneDate) {
 //     var todoItem = document.createElement("li");
 //     todoItem.classList.add("todo-item");
 //     todoItem.innerHTML =
@@ -175,17 +179,17 @@ function removeTodo(todo, todos, after) {
 //     //
 //     completeButton.addEventListener("click"),
 //       function () {
-//         let completedDate = new Date().toLocaleString();
+//         let doneDate = new Date().toLocaleString();
 //         todoItem.removeChild(completeButton);
-//         todoItem.innerHTML += "<p>Done: " + completedDate + "</p>";
+//         todoItem.innerHTML += "<p>Done: " + doneDate + "</p>";
 
 //         let index = savedTodos.findIndex(function (todo) {
 //           return todo.title === description;
 //         });
 
 //         if (index !== -1) {
-//           savedTodos[index].completed = true;
-//           savedTodos[index].completedDate = completedDate;
+//           savedTodos[index].done = true;
+//           savedTodos[index].doneDate = doneDate;
 //           localStorage.setItem("todos", JSON.stringify(savedTodos));
 //         }
 //       };
