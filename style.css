@@ -2,50 +2,67 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   margin: 0;
-
+  
 }
- body {
+section {
+  display: flex;
+  justify-content: center;
+}
+
+#create-form {
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-items: stretch;
+  width: 400px;
 }
-/*
+form > input, textarea {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+form > button {
+  margin-top: 10px;
+  background-color: cadetblue;
+  border-radius: 10px;
+  color: white;
+  padding: 4px;
+}
 main {
+  margin-top: 4rem;
   display: flex;
-  justify-content: space-around;
+  width: 100vw;
+  
+}
+
+main > section {
+
+  width: 50%
 }
 h1 {
-  font-size: 48px;
-  font-weight: 600px;
-  padding: 4rem;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 h2 {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 400px;
-  padding: 2rem;
+  padding: 1rem;
+
 }
-.col-title {
-  width: 50%;
-  margin-top: 2rem;
-} */
+
 .todo-item {
   border: 1px solid black;
   margin: 0.2rem;
 }
-/* #create-form {
-  display: flex;
-  flex-direction: column;
-  
-} 
-#input-title {
-  margin-bottom: 20px;
-  height: 30px;
-}
-#input-description {
-  height: 80px;
-}
+
 ul {
   list-style: none;
-} */
+} 
+.todo-item {
+  padding: 10px;
+}
+.todo-item > button {
+  margin-left: 10px;
+}
