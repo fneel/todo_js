@@ -4,13 +4,14 @@
   margin: 0;
 
 }
-body {
+ body {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 }
+/*
 main {
   display: flex;
   justify-content: space-around;
@@ -28,12 +29,12 @@ h2 {
 .col-title {
   width: 50%;
   margin-top: 2rem;
-}
+} */
 .todo-item {
   border: 1px solid black;
   margin: 0.2rem;
 }
-#create-form {
+/* #create-form {
   display: flex;
   flex-direction: column;
   
@@ -47,4 +48,4 @@ h2 {
 }
 ul {
   list-style: none;
-}
+} */

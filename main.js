@@ -17,14 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
 createForm.addEventListener("submit", (event) => {
   event.preventDefault();
   
-  let title = document.getElementById("input-title");
-  let description = document.getElementById("input-description");
+  let titleInput = document.getElementById("input-title");
+  let descriptionInput = document.getElementById("input-description");
 
-  createTodo(title.value, description.value, todos, () => {
+  createTodo(titleInput.value, descriptionInput.value, todos, () => {
     renderTodos(todos);
   });
-  description.value = "";
-  title.value = "";
+  descriptionInput.value = "";
+  titleInput.value = "";
 });
 
 
@@ -35,7 +35,7 @@ function renderTodos(todos) {
   for (let todo of todos) {
     let element = createTodoElement(todo);
 
-    if (todo.done) {
+    if (todo.completed) {
       doneListItem.append(element);
     } else {
       todoListItem.append(element);
@@ -50,18 +50,19 @@ function createTodoElement(todo) {
   let article = document.createElement("article");
   let title = document.createElement("h3");
   let description = document.createElement("p");
-
+  let createdDate = document.createElement("p");
   let done = document.createElement("input");
   let removeBtn = document.createElement("button");
 
   done.type = "checkbox";
-  title.innerText = todo.header;
-  description.innerText = todo.todo;
-  done.checked = todo.done;
+  title.innerText = todo.title;
+  description.innerText = todo.description;
+  createdDate.innerText = formatDate(todo.createdDate);
+  done.checked = todo.completed;
   removeBtn.innerText = "Remove";
 
   done.addEventListener("change", (event) => {
-    todo.done = event.target.checked;
+    todo.completed = event.target.checked;
     renderTodos(todos);
   });
 
@@ -71,7 +72,7 @@ function createTodoElement(todo) {
     });
   });
 
-  article.append(title, description, done, removeBtn);
+  article.append(title, description, createdDate, done, removeBtn);
 
   li.append(article);
   return li;
@@ -82,8 +83,8 @@ function createTodo(title, description, todos, after) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      header: title,
-      todo: description,
+      title: title,
+      description: description,
       completed: false,
       userId: 1, // Hardcode this property since it is unused.
     }),
@@ -91,9 +92,15 @@ function createTodo(title, description, todos, after) {
     .then((res) => res.json())
     .then((value) => {
       value.id = idCounter++; // Fake this value because otherwise all created todos will have id 151.
+      value.createdDate = new Date().toISOString();
       todos.push(value);
       after();
     });
+}
+function formatDate(dateString) {
+  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+  const date = new Date(dateString);
+  return date.toLocaleDateString(undefined, options);
 }
 
 function removeTodo(todo, todos, after) {

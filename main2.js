@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+
   const createForm = document.getElementById("create-form");
   const todoListItem = document.getElementById("todo-list");
   const doneListItem = document.getElementById("done-list");
@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const description = document.getElementById("description");
   const createdDate = document.getElementById("created-date");
 
-  //let todoItems = [];
+  let todoItems = [];
+
+document.addEventListener("DOMContentLoaded", function () {
 
   //hämta tidigare sparade todos
   var savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
@@ -33,13 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var description = description.value;
     //  var createdDate = new Date();
     var createdDate = new Date();
-    var dd = String(createdDate.getDate()).padStart(2, "0");
-    var mm = String(createdDate.getMonth() + 1).padStart(2, "0"); //January is 0!
-    var yyyy = createdDate.getFullYear();
+    // var dd = String(createdDate.getDate()).padStart(2, "0");
+    // var mm = String(createdDate.getMonth() + 1).padStart(2, "0"); //January is 0!
+    // var yyyy = createdDate.getFullYear();
 
-    createdDate = mm + "/" + dd + "/" + yyyy;
-    document.write(createdDate);
-    console.log(createdDate);
+    // createdDate = mm + "/" + dd + "/" + yyyy;
+    //document.write(createdDate);
+    //console.log(createdDate);
 
     if (title.trim() === "") {
       alert("A title would be nice");
